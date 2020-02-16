@@ -2,12 +2,10 @@ import {
   CHANGE_SEARCH_FIELD,
   REQUEST_ROBOTS_PENDING,
   REQUEST_ROBOTS_SUCCESS,
-  REQUEST_ROBOTS_FAILED
+  REQUEST_ROBOTS_FAILED,
+  initialSearchState,
+  initialRobotsState
 } from "./constants.js";
-
-const initialSearchState = {
-  searchField: ""
-};
 
 export const searchRobots = (state = initialSearchState, action = {}) => {
   switch (action.type) {
@@ -16,12 +14,6 @@ export const searchRobots = (state = initialSearchState, action = {}) => {
     default:
       return state;
   }
-};
-
-const initialRobotsState = {
-  isPending: false,
-  robots: [],
-  error: ""
 };
 
 export const requestRobots = (state = initialRobotsState, action = {}) => {
