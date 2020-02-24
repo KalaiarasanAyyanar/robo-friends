@@ -3,7 +3,8 @@ import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import { store } from "../index";
-import { changeSearchField } from "../actions";
+import { changeSearchField, setRobots } from "../actions";
+import { REQUEST_ROBOTS } from "../constants";
 import "./App.css";
 
 const onSearchChange = event => {
@@ -19,16 +20,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => response.json())
-      .then(users => {
-        this.setState({ robots: users });
-      });
+    store.dispatch(setRobots(REQUEST_ROBOTS));
   }
 
   render() {
-    const { searchfield } = store.getState();
-    const { robots } = this.state;
+    const { searchfield } = store.getState().searchFieldReducer;
+    const { robots } = store.getState().setRobotsReducer;
     const filteredRobots = robots.filter(robot => {
       return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     });

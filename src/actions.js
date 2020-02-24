@@ -8,3 +8,12 @@ export const changeSearchField = newValue => {
     }
   };
 };
+
+export const setRobots = (status, robots = []) => {
+  return {
+    type: status,
+    payload: {
+      robots: robots
+    }
+  };
+};
